@@ -90,7 +90,7 @@ jobs:
       - name: set up node js environment
         uses: actions/setup-node@v6
         with:
-          node-version: 20 # تم تعديله إلى 20 النسخة المستقرة و الـ LTS لـ Node
+          node-version: 24
 
       - name: install node js packages
         run: npm install
