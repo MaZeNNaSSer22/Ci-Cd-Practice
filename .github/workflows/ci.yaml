@@ -118,10 +118,11 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/http-app:latest
 
       - name: Clone Manifests Repository
-        run: |
-          git clone https://x-access-token:${GITOPS_PAT}@github.com/MaZeNNaSSer22/Cd-Using-ArgoCD-Manifests-files.git manifests-repo
-          cd manifests-repo
-          sed -i 's|image: .*http-app:.*|image: ${{ secrets.DOCKER_USERNAME }}/http-app:${{ github.run_number }}|g' k8s/deployment.yaml
+        uses: actions/checkout@v4
+        with:
+          repository: MaZeNNaSSer22/Cd-Using-ArgoCD-Manifests-files
+          token: ${{ secrets.GITOPS_PAT }}
+          path: manifests-repo
 
       - name: Update Image Tag in Deployment Manifest
         run: |
