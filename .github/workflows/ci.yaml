@@ -38,7 +38,7 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/http-app:${{ github.run_number }}
-            ${{ secrets.DOCKER_USERNAME }}/http-app:latest
+
 
 
 
