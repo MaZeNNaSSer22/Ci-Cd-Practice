@@ -127,7 +127,7 @@ jobs:
       - name: Update Image Tag in Deployment Manifest
         run: |
           cd manifests-repo
-          sed -i 's|image: .*http-app:.*|image: ${{ secrets.DOCKER_USERNAME }}/http-app:${{ github.run_number }}|g' k8s/deployment.yaml
+          sed -i 's|image: .*http-app:.*|image: ${{ secrets.DOCKER_USERNAME }}/http-app:${{ github.run_number }}|g' manifests-repo/deploy.yaml
 
       - name: Create Pull Request
         env:
@@ -144,7 +144,7 @@ jobs:
           git checkout -b $BRANCH_NAME
 
           # 3. عمل الـ Add والـ Commit للتغيير
-          git add k8s/deployment.yaml
+          git add manifests-repo/deploy.yaml
           git commit -m "chore: update http-app image tag to build ${{ github.run_number }}"
 
           # 4. عمل الـ Push
